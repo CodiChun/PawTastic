@@ -441,43 +441,59 @@ VALUES ('Buddy', '1010', 'Yorkie', DATE '2023-1-2', 1, 2014, 'Yes', 'No', 'Puppy
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-10', '14:30', '15:00', 1009, 3009, 4006);
+VALUES (DATE '2023-3-2', '14:30', '15:00', 1008, 3003, 4001);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-10', '15:30', '17:00', 1007, 3006, 4014);
+VALUES (DATE '2023-3-2', '14:30', '15:00', 1010, 3007, 4011);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-11', '11:30', '14:00', 1006, 3008, 4013);
+VALUES (DATE '2023-3-3', '14:30', '15:00', 1009, 3009, 4006);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-12', '11:30', '12:30', 1001, 3005, 4004);
+VALUES (DATE '2023-3-3', '14:30', '15:00', 1006, 3008, 4013);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-12', '13:30', '15:00', 1010,	3007, 4011);
+VALUES (DATE '2023-3-10', '14:30', '15:00', 1009, 3009, 4006);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-12', '15:30', '15:45', 1002,	3001, 4002);
+VALUES (DATE '2023-3-10', '15:30', '17:00', 1007, 3006, 4014);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-18', '10:00', '10:15', 1005,	3011, 4002);
+VALUES (DATE '2023-3-11', '11:30', '14:00', 1006, 3008, 4013);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-18', '10:30' ,'12:00', 1003, 3002, 4010);
+VALUES (DATE '2023-3-12', '11:30', '12:30', 1001, 3005, 4004);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-19', '14:00', '15:45', 1004,	3010, 4008);
+VALUES (DATE '2023-3-12', '13:30', '15:00', 1010,	3007, 4011);
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
-VALUES (DATE '2023-2-19', '15:30', '16:00', 1008,	3003, 4001);
+VALUES (DATE '2023-3-12', '15:30', '15:45', 1002,	3001, 4002);
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
+VALUES (DATE '2023-3-18', '10:00', '10:15', 1005,	3011, 4002);
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
+VALUES (DATE '2023-3-18', '10:30' ,'12:00', 1003, 3002, 4010);
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
+VALUES (DATE '2023-3-19', '14:00', '15:45', 1004,	3010, 4008);
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
+VALUES (DATE '2023-3-19', '15:30', '16:00', 1008,	3003, 4001);
 
 -- -- SQLINES DEMO *** tables that were created.
 -- -- SQLINES LICENSE FOR EVALUATION USE ONLY
