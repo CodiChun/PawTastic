@@ -25,9 +25,9 @@
 -- SQLINES DEMO *** Table
 -- SQLINES DEMO *** ***********************************************
 
-DROP DATABASE IF EXISTS `pettastic`;
-CREATE DATABASE IF NOT EXISTS `pettastic`;
-USE `pettastic`;
+DROP DATABASE IF EXISTS `pet_tastic`;
+CREATE DATABASE IF NOT EXISTS `pet_tastic`;
+USE `pet_tastic`;
 
 
 CREATE SEQUENCE po_seq START WITH 1001 INCREMENT BY 1;
