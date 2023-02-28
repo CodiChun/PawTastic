@@ -7,7 +7,7 @@
                                                  consistency among the 4 authors */
 
 /*  ******************************** 
-    Project Phase II 
+    Project Phase III 
     Group 8 (LiveSQL) 
     This SQL Script was tested on 
     Oracle LiveSQL. To run, simply 
