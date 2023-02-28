@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Start of Phase 3 Script for Group 8
    Authors: Codi Chun, Raz Consta, Damien Cruz, Ryan MacLeod
    T CSS 445, Winter 2023 */
@@ -35,6 +36,27 @@ CREATE TABLE PET_OWNER (
   Note VARCHAR(128)
 );
 
+=======
+REM   Script: PET SERVICE APPOINTMENT DATABASE
+REM   The database for pet service
+
+DROP DATABASE IF EXISTS `PawTastic`;
+CREATE DATABASE IF NOT EXISTS `PawTastic`;
+USE `PawTastic`;
+
+
+
+CREATE SEQUENCE po_seq START WITH 1001 INCREMENT BY 1;
+
+CREATE TABLE PET_OWNER( 
+				     Client_ID     		INT			PRIMARY KEY, 
+				     Name		 	VARCHAR(15)    NOT NULL, 
+				     Phone			 VARCHAR(14),		 
+				     Email			 VARCHAR(30), 
+				     Address		             VARCHAR(30), 
+				     Note			 VARCHAR(128) 
+             );
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 
 CREATE TRIGGER po_trig 
 BEFORE INSERT ON PET_OWNER 
@@ -44,6 +66,7 @@ BEGIN
 END; 
 /
 
+<<<<<<< HEAD
 -- Create Cut Card Table
 -- ****************************************************************
 CREATE SEQUENCE cut_card_seq START WITH 2001 INCREMENT BY 1;
@@ -57,6 +80,19 @@ CREATE TABLE CUT_CARD(
   Previous_Appointment_Date DATE, 
   Previous_Service INT
 );
+=======
+CREATE SEQUENCE cut_card_seq START WITH 2001 INCREMENT BY 1;
+
+CREATE TABLE CUT_CARD( 
+				  Card_ID			   INT			PRIMARY KEY, 
+				  Bath_Brush_Notes		   VARCHAR(128), 
+				  Trim_Tidy_Notes		   VARCHAR(128), 
+				  Full_Groom_Notes		   VARCHAR(128), 
+  Nail_Clip_Notes		   VARCHAR(128), 
+				  Previous_Appointment_Date  DATE, 
+				  Previous_Service		   INT 
+			            );
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 
 CREATE TRIGGER cut_card_trig 
 BEFORE INSERT ON CUT_CARD 
@@ -66,6 +102,7 @@ BEGIN
 END; 
 /
 
+<<<<<<< HEAD
 -- Create Services Table
 -- ****************************************************************
 CREATE SEQUENCE services_seq START WITH 4001 INCREMENT BY 1;
@@ -79,6 +116,19 @@ CREATE TABLE SERVICES(
   PRIMARY KEY(Service_ID), 
   CHECK (Cost >= 0)
 );
+=======
+CREATE SEQUENCE services_seq START WITH 4001 INCREMENT BY 1;
+
+CREATE TABLE SERVICES( 
+			 	 Service_ID		INT			NOT NULL, 
+				 Service		VARCHAR(20)	NOT NULL, 
+				 Cost			NUMBER(7,2)		NOT NULL,	 
+				 Type			VARCHAR(10), 
+				 Difficulty		VARCHAR(10), 
+				 PRIMARY KEY(Service_ID), 
+				 CHECK (Cost >= 0) 
+			           );
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 
 CREATE TRIGGER services_trig 
 BEFORE INSERT ON SERVICES 
@@ -88,6 +138,7 @@ BEGIN
 END; 
 /
 
+<<<<<<< HEAD
 -- Create Pet Table
 -- ****************************************************************
 CREATE SEQUENCE pet_seq START WITH 3001 INCREMENT BY 1;
@@ -111,6 +162,28 @@ CREATE TABLE PET(
 );
 
 
+=======
+CREATE SEQUENCE pet_seq START WITH 3001 INCREMENT BY 1;
+
+CREATE TABLE PET( 
+ Pet_ID		INT			NOT NULL, 
+                                     Name			VARCHAR(15)	NOT NULL,	 
+ Owner_ID		INT, 
+ Breed			VARCHAR(20), 
+ Birthday		Date, 
+ Weight		DECIMAL(10,2)	NOT NULL, 
+ Cut_Card		INT, 
+ Microchipped		VARCHAR(20), 
+ Rabies_Vaccine	VARCHAR(20), 
+ Note			VARCHAR(128), 
+ PRIMARY KEY (Pet_ID), 
+ FOREIGN KEY (Owner_ID) REFERENCES PET_OWNER(Client_ID) ON DELETE CASCADE,  
+ FOREIGN KEY (Cut_Card) REFERENCES CUT_CARD(Card_ID) ON DELETE CASCADE, 
+CHECK (Birthday >= date '2002-12-31'), 
+CHECK (Weight < 100) 
+);
+
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 CREATE TRIGGER pet_trig 
 BEFORE INSERT ON PET 
 FOR EACH ROW 
@@ -119,6 +192,7 @@ BEGIN
 END; 
 /
 
+<<<<<<< HEAD
 -- Create Appointment Table
 -- ****************************************************************
 CREATE SEQUENCE appt_seq START WITH 5001 INCREMENT BY 1;
@@ -137,6 +211,27 @@ CREATE TABLE APPOINTMENT(
   FOREIGN KEY(Service_id) REFERENCES SERVICES(Service_ID) ON DELETE CASCADE, 
   CHECK (End_Time > Start_Time)
 );
+=======
+CREATE SEQUENCE appt_seq START WITH 5001 INCREMENT BY 1;
+
+CREATE TABLE APPOINTMENT( 
+				        Appointment_ID	     INT		      NOT NULL, 
+				        Appointment_date   DATE	      DEFAULT CURRENT_DATE, 
+				        Start_Time	     VARCHAR(20)    NOT NULL, 
+				        End_Time	     VARCHAR(20), 
+				        Client_ID		     INT, 
+				        Pet_ID		     INT		       NOT NULL, 
+				        Service_id	     INT		       NOT NULL, 
+				        PRIMARY KEY(Appointment_ID), 
+				        FOREIGN KEY(Client_ID)  
+        	  REFERENCES PET_OWNER(Client_ID) ON DELETE CASCADE, 
+				        FOREIGN KEY(Pet_ID)  
+  REFERENCES PET(Pet_ID) ON DELETE CASCADE, 
+        FOREIGN KEY(Service_id)  
+  REFERENCES SERVICES(Service_ID) ON DELETE CASCADE, 
+CHECK (End_Time > Start_Time) 
+			                 );
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 
 CREATE TRIGGER appt_trig 
 BEFORE INSERT ON APPOINTMENT 
@@ -146,6 +241,7 @@ BEGIN
 END; 
 /
 
+<<<<<<< HEAD
 -- *********************************************************************************  
 -- Part B) Sample Data
 -- ********************************************************************************* 
@@ -154,6 +250,8 @@ END;
 -- Summary: Stores information about the pet owner name(client), 
 -- phone, email, address, and a note
 
+=======
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
 VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent, WA', '');
 
@@ -170,7 +268,11 @@ INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)
 VALUES ('Kyler Robinson', '(360)941-8431', 'krob31@gmail.com', '30 House St. Olympia, WA', '');
 
 INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
+<<<<<<< HEAD
 VALUES ('Tabitha Leery', '(360)649-1634', 'tlee34@msn.com', '88 Livehere Dr. Tacoma, WA', 'Met through Facebook');
+=======
+VALUES ('Tabitha Leery', '(360)649-1634', 'tlee34@msn.com	88', 'Livehere Dr. Tacoma, WA', 'Met through Facebook');
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 
 INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
 VALUES ('Erica Simpson', '(253)946-1347', 'esim47@aol.com', '901 Tulip Dr. Puyallup, WA', '');
@@ -184,6 +286,7 @@ VALUES ('Clinton Rowe', '(253)941-6167', 'crow67@hotmail.com', '69 Real Rd. Taco
 INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
 VALUES ('John Doe', '(360)645-3397', 'jdoe97@hotmail.com', '343 Halo Dr. Bellevue, WA', '');
 
+<<<<<<< HEAD
 -- ****************************************************************
 
 -- Data for Services table 
@@ -191,6 +294,8 @@ VALUES ('John Doe', '(360)645-3397', 'jdoe97@hotmail.com', '343 Halo Dr. Bellevu
 -- service name, service cost (in US Dollars), 
 -- service type (Non-Groom and Groom for now), and difficulty (1 - 4)
 
+=======
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 INSERT INTO SERVICES(Service, Cost, Type, Difficulty) 
 VALUES ('Nail Clip', 5, 'Non-Groom', '1');
 
@@ -233,6 +338,7 @@ VALUES ('Full Groom', 50,	'Groom', '3');
 INSERT INTO SERVICES(Service, Cost, Type, Difficulty) 
 VALUES ('Full Groom', 60,	'Groom', '4');
 
+<<<<<<< HEAD
 -- ****************************************************************
 
 -- Data for Cut Card table 
@@ -240,6 +346,8 @@ VALUES ('Full Groom', 60,	'Groom', '4');
 -- bath/brush notes, trim/tidy notes, full groom notes, nail clip notes,
 -- previous appointment date, previous service id
 
+=======
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 INSERT INTO CUT_CARD (Bath_Brush_Notes, Trim_Tidy_Notes, Full_Groom_Notes, Nail_Clip_Notes, Previous_Appointment_Date, Previous_Service) 
 VALUES ('Hypo Allergenic Shampoo', 'Use #4 Blade - C Comb', 'Use #3 Blade - B Comb', 'Hates nails being clipped', DATE '2023-01-22', 4013);
 
@@ -282,6 +390,7 @@ VALUES ('Pulls away during feet', 'Use #4 Blade - B Comb', 'Use #6 Blade - C Com
 INSERT INTO CUT_CARD (Bath_Brush_Notes, Trim_Tidy_Notes, Full_Groom_Notes, Nail_Clip_Notes, Previous_Appointment_Date, Previous_Service) 
 VALUES ('Don''t get water close to eyes, will panic', 'Use #3 Blade - A Comb', 'Use #3 Blade - A Comb', 'Ok', DATE '2022-12-18', 4009);
 
+<<<<<<< HEAD
 -- ****************************************************************
 
 -- Data for Pet table
@@ -289,6 +398,8 @@ VALUES ('Don''t get water close to eyes, will panic', 'Use #3 Blade - A Comb', '
 -- pet name, owner id, pet breed, pet birthday, pet weight (in lbs), 
 -- cut card id, microchipped (yes/no), rabies vaccine (yes/no), note
 
+=======
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Cut_Card, Microchipped, Rabies_Vaccine, Note) 
 VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Friendly old orange cat');
 
@@ -331,6 +442,7 @@ VALUES ('Fannie', '1010', 'Pomeranian', DATE '2008-5-8',12, 2007,	'Yes', 'Yes', 
 INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Cut_Card, Microchipped, Rabies_Vaccine, Note) 
 VALUES ('Buddy', '1010', 'Yorkie', DATE '2023-1-2', 1, 2014, 'Yes', 'No', 'Puppy');
 
+<<<<<<< HEAD
 -- ****************************************************************
 
 -- Data for Appointment table
@@ -338,6 +450,8 @@ VALUES ('Buddy', '1010', 'Yorkie', DATE '2023-1-2', 1, 2014, 'Yes', 'No', 'Puppy
 -- appointment date, start time, end time, 
 -- client id, pet id, service id
 
+=======
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
 VALUES (DATE '2023-2-10', '14:30', '15:00', 1009, 3009, 4006);
 
@@ -368,6 +482,7 @@ VALUES (DATE '2023-2-19', '14:00', '15:45', 1004,	3010, 4008);
 INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id) 
 VALUES (DATE '2023-2-19', '15:30', '16:00', 1008,	3003, 4001);
 
+<<<<<<< HEAD
 -- Displaying the 5 tables that were created.
 select * from pet_owner;
 select * from cut_card;
@@ -630,3 +745,9 @@ FROM   (SELECT pet_owner.NAME    AS ANAME,
 -- New updates on phase 3:
 ALTER TABLE APPOINTMENT DROP COLUMN Client_ID;
 RENAME SERVICES TO SERVICE;
+=======
+ALTER TABLE APPOINTMENT DROP COLUMN Client_ID;
+RENAME SERVICES TO SERVICE;
+
+
+>>>>>>> 32b8b8e9038e3c5357b0029efa3f784fab238dc1
