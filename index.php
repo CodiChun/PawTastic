@@ -19,24 +19,23 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home
-                            <span class="visually-hidden">(current)</span>
+                        <a class="nav-link active" href="index.php">Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shedule an Appointment</a>
+                        <a class="nav-link" href="Appointment.php">Shedule an Appointment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add A New Client</a>
+                        <a class="nav-link" href="addClient.php">Add A New Client</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">View Cut Cards</a>
+                        <a class="nav-link" href="viewCutCards.php">View Cut Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Call List</a>
+                        <a class="nav-link" href="reminderList.php">Call List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Stats</a>
+                        <a class="nav-link" href="stats.php">Stats</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
