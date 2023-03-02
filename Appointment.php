@@ -63,39 +63,11 @@
     </div>
 </nav>
 <!-- Nav Bar End-->
-<!--
 
-INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id)
-VALUES (DATE '2023-3-2', '14:30', '15:00', 1008, 3003, 4001);
--->
     <form action="Appointment.php" method = "POST" >
-    <label for="petOwner" >Owner</label>
-        <select name="petOwner" id="petOwner" required >
-    <?php
-    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-    if ( mysqli_connect_errno() )
-    {
-        die( mysqli_connect_error() );
-    }
-    $sql = "SELECT * FROM PET_OWNER ORDER BY Name"; 
-    if ($result = mysqli_query($connection, $sql))  
-    {
-        // loop through the data 
-        while($row = mysqli_fetch_assoc($result)) 
-        {
-            echo '<option value="' . $row['Client_ID'] . '">';
-            echo $row['Name']. ', '. $row['Client_ID'];
-            echo "</option>";
-        }
-        // release the memory used by the result set
-        mysqli_free_result($result);
-    }
-    ?>
-    </select>
-
     <label for="pet" >Pet</label>
         <select name="pet" id="pet" required>
-        <?php 
+        <?php
         $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
         if ( mysqli_connect_errno() )
         {
@@ -107,8 +79,8 @@ VALUES (DATE '2023-3-2', '14:30', '15:00', 1008, 3003, 4001);
             // loop through the data 
             while($row = mysqli_fetch_assoc($result)) 
             {
-                echo '<option value="' . $row['Client_ID'] . '">';
-                echo $row['Name']. ', '. $row['Client_ID'];
+                echo '<option value="' . $row['Pet_ID'] . '">';
+                echo $row['Name']. ', '. $row['Pet_ID'];
                 echo "</option>";
             }
             // release the memory used by the result set
@@ -156,8 +128,11 @@ VALUES (DATE '2023-3-2', '14:30', '15:00', 1008, 3003, 4001);
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-
 <!--
+
+INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Client_id, Pet_id, Service_id)
+VALUES (DATE '2023-3-2', '14:30', '15:00', 1008, 3003, 4001);
+
 POST METHOD GOES HERE
 FORM SQL QUIRY FROM FORM XD on submit
 
@@ -165,26 +140,29 @@ echo a card or something saying sucsess
 
 -->
 
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if ( mysqli_connect_errno() )
+        {
+            die( mysqli_connect_error() );
+        }
+        $sql = "INSERT INTO APPOINTMENT (Appointment_Date, Start_Time, End_Time, Pet_id, Service_id)
+        VALUES (DATE '{$_POST['apptDate']}', '{$_POST['apptStart']}','{$_POST['apptEnd']}', '{$_POST['pet']}', '{$_POST['serv']}');";
+        echo $sql;
+       mysqli_query($connection, $sql);
+        //echo $_POST['apptStart'];
+        //echo $_POST['apptEnd'];
+       // echo $_POST['apptDate'];
+      //  echo $_POST['pet'];
+       // echo $_POST['serv'];
+        echo '<div class="alert alert-dismissible alert-success">
+  <strong>Appointmnet Has been made!</strong><a href="index.php"> Please See All Appointments</a>
+</div>
+';
+    }
+    ?>
 
 
 
