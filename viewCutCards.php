@@ -94,6 +94,7 @@
                     <thead> 
                         <tr class="table-success"> 
                             <th scope="col">Pet's Name</th> 
+                            <th scope="col">Owner</th> 
                             <th scope="col">Bath Brush Notes</th> 
                             <th scope="col">Trim Tidy Notes</th> 
                             <th scope="col">Full Groom Notes</th>
@@ -106,10 +107,12 @@
                             die( mysqli_connect_error() );
                         }
                         $sql = "
-                        SELECT *
+                        SELECT PET.Name AS PNAME, PET_OWNER.NAME AS ONAME, Bath_Brush_Notes, Trim_Tidy_Notes, Full_Groom_Notes, Nail_Clip_Notes
                         FROM PET
                         LEFT JOIN CUT_CARD
                         ON Cut_Card = Card_ID
+                        LEFT JOIN PET_OWNER
+                        ON Client_ID = Owner_ID
                         WHERE Pet_ID = {$_GET['vcc']}";
 
                         if ($result = mysqli_query($connection, $sql))  
@@ -118,7 +121,8 @@
                             { 
                     ?> 
                     <tr> 
-                        <td><?php echo $row['Name'] ?></td> 
+                        <td><?php echo $row['PNAME'] ?></td> 
+                        <td><?php echo $row['ONAME'] ?></td> 
                         <td><?php echo $row['Bath_Brush_Notes'] ?></td> 
                         <td><?php echo $row['Trim_Tidy_Notes'] ?></td> 
                         <td><?php echo $row['Full_Groom_Notes'] ?></td>
