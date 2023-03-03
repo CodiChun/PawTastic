@@ -1,5 +1,5 @@
 <?php
-define('DBHOST', 'localhost');
+define('DBHOST', '127.0.0.1');
 define('DBUSER', 'testuser');
 define('DBPASS', 'mypassword');
 define('DBNAME', 'pet_tastic');
