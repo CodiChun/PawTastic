@@ -62,7 +62,7 @@
         <h1>
             Unpaid Service
         </h1>
-        <table class="table table-hover">
+        <table class="table table-info">
             <thead>
                 <tr>
                     <th scope="col">Appointment ID</th>
@@ -92,7 +92,7 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                 ?>
-                <tr class="table-primary">
+                <tr class="table-danger">
                     <td><?php echo $row['Appointment_ID'] ?></td>
                     <td><?php echo $row['Appointment_date'] ?></td>
                     <td><?php echo $row['CNAME'] ?></td>
