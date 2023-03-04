@@ -125,4 +125,8 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
         </table>
         <!--Table End-->
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 48453aba210f8d34727280bff3876b7591cbc4db
