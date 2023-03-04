@@ -29,6 +29,9 @@
                             <a class="nav-link" href="addClient.php">Add A New Client</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="newPet.php">Add A New Pet</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="viewCutCards.php">View Cut Cards
                                 <span class="visually-hidden">(current)</span>
                             </a>
@@ -40,7 +43,7 @@
                             <a class="nav-link" href="stats.php">Stats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="about.html">About</a>
                         </li>
 
                     </ul>
