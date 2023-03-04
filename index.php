@@ -46,18 +46,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
-                    <!--
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                    </li>
-                     -->
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-sm-2" type="search" placeholder="Search">
@@ -67,14 +55,6 @@
         </div>
     </nav>
     <!-- Nav Bar End-->
-
-
-
-<!--
-SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIME AS "Start Time", PET.Name AS "Pet Name", PET_OWNER.NAME AS "Owner Name", PET_OWNER.PHONE AS "Owner Phone Number", PET_OWNER.EMAIL AS "Owner Email" FROM APPOINTMENT JOIN PET ON APPOINTMENT.PET_ID = PET.PET_ID JOIN PET_OWNER ON PET.OWNER_ID = PET_OWNER.CLIENT_ID ORDER BY `Appointment Date` ASC;
-
-
--->
 
     <!--Table Start-->
     <h1>
@@ -127,21 +107,5 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
         </tbody>
     </table>
     <!--Table End-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

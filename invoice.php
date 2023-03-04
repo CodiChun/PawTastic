@@ -38,6 +38,9 @@
                             <a class="nav-link" href="reminderList.php">Call List</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="invoice.php">Invoice</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="stats.php">Stats</a>
                         </li>
                         <li class="nav-item">
@@ -57,7 +60,7 @@
 
         <!--Table Start-->
         <h1>
-            Completed Appointments
+            Unpaid Service
         </h1>
         <table class="table table-hover">
             <thead>
@@ -106,12 +109,96 @@
             </tbody>
         </table>
         <!--Table End-->
+        
+
+        <div class="jumbotron"> 
+            <p class="lead">Select an appointment ID to generate emial<p> 
+            <hr class="my-4"> 
+            <form method="GET" action="invoice.php"> 
+                <select name="aid" onchange='this.form.submit()'> 
+                    <option selected>Select a appointment ID</option> 
+
+                    <?php 
+                    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+                    if ( mysqli_connect_errno() )  
+                    { 
+                        die( mysqli_connect_error() );   
+                    } 
+                    $sql = "SELECT Appointment_ID
+                        FROM APPOINTMENT
+                        WHERE Appointment_date < CURRENT_DATE;"; 
+                    if ($result = mysqli_query($connection, $sql))  
+                    { 
+                        // loop through the data 
+                        while($row = mysqli_fetch_assoc($result)) 
+                        { 
+                            echo '<option value="' . $row['Appointment_ID'] . '">'; 
+                            echo $row['Appointment_ID'];  
+                            echo "</option>"; 
+                        } 
+                        // release the memory used by the result set 
+                        mysqli_free_result($result);  
+                    }  
+                    ?>  
+                </select> 
+                <?php 
+                if ($_SERVER["REQUEST_METHOD"] == "GET")  
+                { 
+                    if (isset($_GET['aid']) )  
+                    { 
+                ?> 
+                <p>&nbsp;</p>
+
+                    <?php
+                        if ( mysqli_connect_errno() )
+                        {
+                            die( mysqli_connect_error() );
+                        }
+                        $sql = "
+                        SELECT Appointment_ID, APPOINTMENT_Date, Service, PET_OWNER.NAME AS CNAME, EMAIL, COST
+                        FROM APPOINTMENT 
+                        LEFT JOIN PET ON APPOINTMENT.Pet_ID = PET.Pet_ID
+                        LEFT JOIN PET_OWNER 
+                        ON PET.Owner_ID = PET_OWNER.CLIENT_ID
+                        LEFT JOIN SERVICE 
+                        ON APPOINTMENT.SERVICE_ID = SERVICE.SERVICE_ID
+                        WHERE Appointment_ID = {$_GET['aid']}
+                        ";
+
+                        if ($result = mysqli_query($connection, $sql))  
+                        {
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                    ?> 
+                <div class="card text-white bg-warning mb-3" style="max-width: 70rem;">
+                    <div class="card-header">To:&nbsp;<?php echo $row['EMAIL'] ?></div>
+                    <div class="card-body">
+                        <p class="card-text">Dear <?php echo $row['CNAME'] ?>, <br><br>
+
+                            Thank you for choosing our pet grooming services. Please find the invoice for your recent pet grooming services below:<br><br>
+
+                            Appointment Number: <?php echo $row['Appointment_ID'] ?><br>
+                            Service Date: <?php echo $row['APPOINTMENT_Date'] ?><br>
+                            Description of Service: <?php echo $row['Service'] ?><br>
+                            Total Amount Due: <?php echo $row['COST'] ?><br><br>
+
+                            Payment is due within 30 days from the date of this email. <br><br>
+
+                            We appreciate your business and look forward to seeing you and your pet again soon.<br><br>
+
+                            Best regards,<br>
+                            Paw Tastic</p>
+                    </div>
+                </div>
+                    <?php 
+                            } 
+                            // release the memory used by the result set 
+                            mysqli_free_result($result);  
+                        }
+                    } // end if (isset) 
+                } // end if ($_SERVER) 
+                    ?> 
+            </form> 
+        </div> 
+
     </body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-</html>
-=======
-</html>
->>>>>>> 48453aba210f8d34727280bff3876b7591cbc4db
-=======
->>>>>>> codi
