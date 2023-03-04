@@ -29,9 +29,10 @@
                             <a class="nav-link" href="addClient.php">Add A New Client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="viewCutCards.php">View Cut Cards
-                                <span class="visually-hidden">(current)</span>
-                            </a>
+                            <a class="nav-link" href="newPet.php">Add A New Pet</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="viewCutCards.php">View Cut Cards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="reminderList.php">Call List</a>
@@ -40,9 +41,20 @@
                             <a class="nav-link" href="stats.php">Stats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="about.html">About</a>
                         </li>
-
+                        <!--
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">Separated link</a>
+</div>
+</li>
+-->
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-sm-2" type="search" placeholder="Search">
@@ -53,91 +65,64 @@
         </nav>
         <!-- Nav Bar End-->
 
-        <!-- END -- Add HTML code for the top menu section (navigation bar) --> 
 
-        <div class="jumbotron"> 
-            <p class="lead">Select a pet's name or ID<p> 
-            <hr class="my-4"> 
-            <form method="GET" action="viewCutCards.php"> 
-                <select name="vcc" onchange='this.form.submit()'> 
-                    <option selected>Select a pet's name or ID</option> 
 
-                    <?php 
-                    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-                    if ( mysqli_connect_errno() )  
-                    { 
-                        die( mysqli_connect_error() );   
-                    } 
-                    $sql = "SELECT * FROM PET ORDER BY Name"; 
-                    if ($result = mysqli_query($connection, $sql))  
-                    { 
-                        // loop through the data 
-                        while($row = mysqli_fetch_assoc($result)) 
-                        { 
-                            echo '<option value="' . $row['Pet_ID'] . '">'; 
-                            echo $row['Name']. ', '. $row['Pet_ID'];  
-                            echo "</option>"; 
-                        } 
-                        // release the memory used by the result set 
-                        mysqli_free_result($result);  
-                    }  
-                    ?>  
-                </select> 
-                <?php 
-                if ($_SERVER["REQUEST_METHOD"] == "GET")  
-                { 
-                    if (isset($_GET['vcc']) )  
-                    { 
-                ?> 
-                <p>&nbsp;</p> 
-                <table class="table table-hover"> 
-                    <thead> 
-                        <tr class="table-success"> 
-                            <th scope="col">Pet's Name</th> 
-                            <th scope="col">Owner</th> 
-                            <th scope="col">Bath Brush Notes</th> 
-                            <th scope="col">Trim Tidy Notes</th> 
-                            <th scope="col">Full Groom Notes</th>
-                            <th scope="col">Nail Clip Notes</th>
-                        </tr> 
-                    </thead> 
-                    <?php            
-                        if ( mysqli_connect_errno() )
-                        {
-                            die( mysqli_connect_error() );
-                        }
-                        $sql = "
-                        SELECT Appointment_ID, Appointment_date, PET_OWNER.NAME AS "CLIENT NAME", EMAIL, COST
+        <!--
+SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIME AS "Start Time", PET.Name AS "Pet Name", PET_OWNER.NAME AS "Owner Name", PET_OWNER.PHONE AS "Owner Phone Number", PET_OWNER.EMAIL AS "Owner Email" FROM APPOINTMENT JOIN PET ON APPOINTMENT.PET_ID = PET.PET_ID JOIN PET_OWNER ON PET.OWNER_ID = PET_OWNER.CLIENT_ID ORDER BY `Appointment Date` ASC;
+
+
+-->
+
+        <!--Table Start-->
+        <h1>
+            Completed Appointments
+        </h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Client's Name</th>
+                    <th scope="col">Pet's Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+                if ( mysqli_connect_errno() )
+                {
+                    die( mysqli_connect_error() );
+                }
+                $sql = "SELECT Appointment_ID, Appointment_date, PET.Name AS PNAME, PET_OWNER.NAME AS CNAME, EMAIL, COST
                         FROM APPOINTMENT
                         LEFT JOIN PET ON APPOINTMENT.Pet_ID = PET.Pet_ID
                         LEFT JOIN PET_OWNER ON PET.Owner_ID = PET_OWNER.CLIENT_ID
                         LEFT JOIN SERVICE ON APPOINTMENT.SERVICE_ID = SERVICE.SERVICE_ID
-                        WHERE Appointment_date < CURRENT_DATE;
-
-                        if ($result = mysqli_query($connection, $sql))  
-                        { 
-                            while($row = mysqli_fetch_assoc($result)) 
-                            { 
-                    ?> 
-                    <tr> 
-                        <td><?php echo $row['PNAME'] ?></td> 
-                        <td><?php echo $row['ONAME'] ?></td> 
-                        <td><?php echo $row['Bath_Brush_Notes'] ?></td> 
-                        <td><?php echo $row['Trim_Tidy_Notes'] ?></td> 
-                        <td><?php echo $row['Full_Groom_Notes'] ?></td>
-                        <td><?php echo $row['Nail_Clip_Notes'] ?></td>
-                    </tr> 
-                    <?php 
-                            } 
-                            // release the memory used by the result set 
-                            mysqli_free_result($result);  
-                        }  
-                    } // end if (isset) 
-                } // end if ($_SERVER) 
-                    ?> 
-                </table> 
-            </form> 
-        </div> 
-
-    </body> 
-</html> 
+                        WHERE Appointment_date < CURRENT_DATE;";
+                if ($result = mysqli_query($connection, $sql))
+                {
+                    // loop thrugh the data
+                    while($row = mysqli_fetch_assoc($result))
+                    {
+                ?>
+                <tr class="table-primary">
+                    <td><?php echo $row['Appointment_ID'] ?></td>
+                    <td><?php echo $row['Appointment_date'] ?></td>
+                    <td><?php echo $row['CNAME'] ?></td>
+                    <td><?php echo $row['PNAME'] ?></td>
+                    <td><?php echo $row['EMAIL'] ?></td>
+                    <td><?php echo '$'.$row['COST'] ?></td>
+                </tr>
+                <?php
+                    }
+                    // release the memory used by the result set
+                    mysqli_free_result($result);
+                }
+                ?>
+            </tbody>
+        </table>
+        <!--Table End-->
+    </body>
+</html>
