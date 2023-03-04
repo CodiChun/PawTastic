@@ -34,12 +34,13 @@
                         <a class="nav-link" href="newPet.php">Add A New Pet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="viewCutCards.php">View Cut Cards
-                            <span class="visually-hidden">(current)</span>
-                        </a>
+                        <a class="nav-link" href="viewCutCards.php">View Cut Cards</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="reminderList.php">Call List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="invoice.php">Invoice</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="stats.php">Stats</a>

@@ -40,6 +40,9 @@
                     <a class="nav-link" href="reminderList.php">Call List</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="invoice.php">Invoice</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="stats.php">Stats</a>
                 </li>
                 <li class="nav-item">

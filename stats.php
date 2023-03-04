@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home
+                            <a class="nav-link active" href="index.php">Home
                             </a>
                         </li>
                         <li class="nav-item">
@@ -38,7 +38,10 @@
                             <a class="nav-link" href="reminderList.php">Call List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="stats.php">Stats</a>
+                            <a class="nav-link" href="invoice.php">Invoice</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stats.php">Stats</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
