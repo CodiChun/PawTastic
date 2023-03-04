@@ -59,6 +59,51 @@
     </nav>
     <!-- Nav Bar End-->
     <body>
+        
+
+        <!--
+`INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
+VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent, WA', '');
+-->
+        <form id="leform">
+            <div class="form-group">
+                <label for="clname">Full Name</label>
+                <input type="text" id="clname" name="clname" placeholder="Enter Full Name" required>
+
+
+                <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                <input type="email" placeholder="Enter email" required>
+
+
+                <label for="phone" class="form-label mt-4" >Phone Number</label>
+                <input type="tel" id="phone" name="phone"
+                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                       placeholder="Enter Phone Number"
+                       required>
+                <label>Adress</label>
+                <input id="adress" name = "adress" type="text" placeholder="Enter Address" required>
+                <label>Notes</label>
+                <input id="notes" name = "notes" type="text" placeholder="Any Notes?" required>
+            </div>
+
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </body>
 
