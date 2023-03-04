@@ -95,7 +95,12 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
                 {
                     die( mysqli_connect_error() );
                 }
-                $sql = "SELECT APPOINTMENT.APPOINTMENT_DATE AS 'Appointment Date', APPOINTMENT.START_TIME AS 'Start Time', PET.Name AS 'Pet Name', PET_OWNER.NAME AS 'Owner Name', PET_OWNER.PHONE AS 'Owner Phone Number', PET_OWNER.EMAIL AS 'Owner Email' FROM APPOINTMENT JOIN PET ON APPOINTMENT.PET_ID = PET.PET_ID JOIN PET_OWNER ON PET.OWNER_ID = PET_OWNER.CLIENT_ID ORDER BY `Appointment Date` ASC;";
+            $sql = "SELECT APPOINTMENT.APPOINTMENT_DATE AS 'Appointment Date', APPOINTMENT.START_TIME AS 'Start Time', PET.Name AS 'Pet Name', PET_OWNER.NAME AS 'Owner Name', PET_OWNER.PHONE AS 'Owner Phone Number', PET_OWNER.EMAIL AS 'Owner Email' 
+                    FROM APPOINTMENT 
+                    JOIN PET ON APPOINTMENT.PET_ID = PET.PET_ID 
+                    JOIN PET_OWNER ON PET.OWNER_ID = PET_OWNER.CLIENT_ID
+                    WHERE 'Appointment Date' > CURRENT_DATE
+                    ORDER BY `Appointment Date` ASC;";
                 if ($result = mysqli_query($connection, $sql))
                 {
                     // loop thrugh the data
