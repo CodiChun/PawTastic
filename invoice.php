@@ -106,13 +106,13 @@
                         {
                             die( mysqli_connect_error() );
                         }
-                        $sql = "
+                        $sql = '
                         SELECT Appointment_ID, Appointment_date, PET_OWNER.NAME AS "CLIENT NAME", EMAIL, COST
                         FROM APPOINTMENT
                         LEFT JOIN PET ON APPOINTMENT.Pet_ID = PET.Pet_ID
                         LEFT JOIN PET_OWNER ON PET.Owner_ID = PET_OWNER.CLIENT_ID
                         LEFT JOIN SERVICE ON APPOINTMENT.SERVICE_ID = SERVICE.SERVICE_ID
-                        WHERE Appointment_date < CURRENT_DATE;
+                        WHERE Appointment_date < CURRENT_DATE;';
 
                         if ($result = mysqli_query($connection, $sql))  
                         { 
