@@ -190,6 +190,8 @@
                             Paw Tastic</p>
                     </div>
                 </div>
+                <button type="button" class="btn btn-success">Send</button>
+                <button type="button" class="btn btn-danger">Cancel</button>
                     <?php 
                             } 
                             // release the memory used by the result set 
@@ -200,5 +202,6 @@
                     ?> 
             </form> 
         </div> 
+
 
     </body>
