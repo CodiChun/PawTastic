@@ -99,7 +99,7 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
                     FROM APPOINTMENT 
                     JOIN PET ON APPOINTMENT.PET_ID = PET.PET_ID 
                     JOIN PET_OWNER ON PET.OWNER_ID = PET_OWNER.CLIENT_ID
-                    WHERE 'Appointment Date' > CURRENT_DATE
+                    WHERE Appointment_date > CURRENT_DATE
                     ORDER BY `Appointment Date` ASC;";
                 if ($result = mysqli_query($connection, $sql))
                 {
