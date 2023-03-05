@@ -116,7 +116,7 @@
             <hr class="my-4"> 
             <form method="GET" action="invoice.php"> 
                 <select name="aid" onchange='this.form.submit()'> 
-                    <option selected>Select a appointment ID</option> 
+                    <option selected>Select an appointment ID</option> 
 
                     <?php 
                     $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
