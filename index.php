@@ -35,9 +35,6 @@
                         <a class="nav-link" href="viewCutCards.php">View Cut Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reminderList.php">Call List</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="invoice.php">Invoice</a>
                     </li>
                     <li class="nav-item">
@@ -47,10 +44,6 @@
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -60,7 +53,7 @@
     <h1>
         Upcoming Appointments
     </h1>
-    <table class="table table-hover">
+    <table class="table table-danger">
         <thead>
             <tr>
                 <th scope="col">Appointment Date</th>
@@ -90,7 +83,7 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                 ?>
-            <tr class="table-primary">
+            <tr class="table-info">
                 <td><?php echo $row['Appointment Date'] ?></td>
                 <td><?php echo $row['Start Time'] ?></td>
                 <td><?php echo $row['Pet Name'] ?></td>
