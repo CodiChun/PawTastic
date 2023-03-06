@@ -83,7 +83,7 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                 ?>
-            <tr class="table-info">
+            <tr class="table-success">
                 <td><?php echo $row['Appointment Date'] ?></td>
                 <td><?php echo $row['Start Time'] ?></td>
                 <td><?php echo $row['Pet Name'] ?></td>

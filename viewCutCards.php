@@ -89,14 +89,7 @@
                 <p>&nbsp;</p> 
                 <table class="table table-hover"> 
                     <thead> 
-                        <tr class="table-success"> 
-                            <th scope="col">Pet's Name</th> 
-                            <th scope="col">Owner</th> 
-                            <th scope="col">Bath Brush Notes</th> 
-                            <th scope="col">Trim Tidy Notes</th> 
-                            <th scope="col">Full Groom Notes</th>
-                            <th scope="col">Nail Clip Notes</th>
-                        </tr> 
+
                     </thead> 
                     <?php            
                         if ( mysqli_connect_errno() )
@@ -117,14 +110,40 @@
                             while($row = mysqli_fetch_assoc($result)) 
                             { 
                     ?> 
-                    <tr> 
-                        <td><?php echo $row['PNAME'] ?></td> 
-                        <td><?php echo $row['ONAME'] ?></td> 
-                        <td><?php echo $row['Bath_Brush_Notes'] ?></td> 
-                        <td><?php echo $row['Trim_Tidy_Notes'] ?></td> 
-                        <td><?php echo $row['Full_Groom_Notes'] ?></td>
-                        <td><?php echo $row['Nail_Clip_Notes'] ?></td>
-                    </tr> 
+
+                    <div class="card bg-light mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Info</div>
+                        <div class="card-body">
+                            <h4 class="card-title"><?php echo $row['PNAME'] ?></h4>
+                            <p class="card-text">Owner:&nbsp;<?php echo $row['ONAME'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Bath Brush Notes</div>
+                        <div class="card-body">
+                            <p class="card-text"><?php echo $row['Bath_Brush_Notes'] ?></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Trim Tidy Notes</div>
+                        <div class="card-body">
+                            <p class="card-text"><?php echo $row['Trim_Tidy_Notes'] ?></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Full Groom Notes</div>
+                        <div class="card-body">
+                            <p class="card-text"><?php echo $row['Full_Groom_Notes'] ?></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Nail_Clip_Notes</div>
+                        <div class="card-body">
+                            <p class="card-text"><?php echo $row['Nail_Clip_Notes'] ?></p>
+                        </div>
+                    </div>
+
                     <?php 
                             } 
                             // release the memory used by the result set 
