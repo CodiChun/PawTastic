@@ -1,3 +1,4 @@
+<?php require_once('config.php');?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -86,6 +87,11 @@ VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent
 
 
         <?php
+        $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+        if ( mysqli_connect_errno() )
+        {
+            die( mysqli_connect_error() );
+        }
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
 
@@ -97,10 +103,13 @@ VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent
             $sql = "INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
                 VALUES ('{$_POST['clname']}', '{$_POST['phone']}', '{$_POST['email']}', '{$_POST['address']}', '{$_POST['notes']}');";
             echo $sql;
-            mysqli_query($connection, $sql);
-            
+            $result = mysqli_query($connection, $sql);
+            if (!$result) {
+                die('Error: ' . mysqli_error($connection));
+            }
+
             echo '<div class="alert alert-dismissible alert-success">
-  <strong>Appointmnet Has been made!</strong><a href="index.php"> Please See All Appointments</a>
+  <strong>Client Added!!</strong><a href="newPet.php">would you like to attach a pet</a>
 </div>
 ';
         }
