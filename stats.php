@@ -35,9 +35,6 @@
                             <a class="nav-link" href="viewCutCards.php">View Cut Cards</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reminderList.php">Call List</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="invoice.php">Invoice</a>
                         </li>
                         <li class="nav-item">
@@ -80,7 +77,7 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
         <h1>
             Groom Frequency Statistics
         </h1>
-        <table class="table table-hover">
+        <table class="table table-success">
             <thead>
                 <tr>
                     <th scope="col">Frequency</th>
@@ -114,7 +111,7 @@ SELECT APPOINTMENT.APPOINTMENT_DATE AS "Appointment Date", APPOINTMENT.START_TIM
                     while($row = mysqli_fetch_assoc($result))
                     {
                 ?>
-                <tr class="table-primary">
+                <tr class="table-warning">
                     <td><?php echo $row['Frequency'] ?></td>
                     <td><?php echo $row['Service ID'] ?></td>
                     <td><?php echo $row['Service Name'] ?></td>
