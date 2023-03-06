@@ -65,14 +65,14 @@
 `INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
 VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent, WA', '');
 -->
-        <form id="leform">
+        <form id="leform" action="addClient.php" method = "POST">
             <div class="form-group">
                 <label for="clname">Full Name</label>
                 <input type="text" id="clname" name="clname" placeholder="Enter Full Name" required>
 
 
                 <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-                <input type="email" placeholder="Enter email" required>
+                <input type="email" placeholder="Enter email" required name = "email">
 
 
                 <label for="phone" class="form-label mt-4" >Phone Number</label>
@@ -81,12 +81,37 @@ VALUES ('Thomas Hills', '(888)456-7891', 'thill91@gmail.com', '10 Street SW Kent
                        placeholder="Enter Phone Number"
                        required>
                 <label>Adress</label>
-                <input id="adress" name = "adress" type="text" placeholder="Enter Address" required>
+                <input id="address" name = "address" type="text" placeholder="Enter Address" required>
                 <label>Notes</label>
                 <input id="notes" name = "notes" type="text" placeholder="Any Notes?" required>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
 
         </form>
+
+
+
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+
+            if ( mysqli_connect_errno() )
+            {
+                die( mysqli_connect_error() );
+            }
+
+            $sql = "INSERT INTO PET_OWNER (Name, Phone, Email, Address, Note)  
+                VALUES ('{$_POST['clname']}', '{$_POST['phone']}', '{$_POST['email']}', '{$_POST['address']}', '{$_POST['notes']}');";
+            echo $sql;
+            mysqli_query($connection, $sql);
+            
+            echo '<div class="alert alert-dismissible alert-success">
+  <strong>Appointmnet Has been made!</strong><a href="index.php"> Please See All Appointments</a>
+</div>
+';
+        }
+        ?>
 
 
 
