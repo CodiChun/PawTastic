@@ -68,29 +68,32 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
     Enter New Pet's Info
         </h1>
         <form id="leform" action="newPet.php" method = "POST">
-            <label for="petOwner" >Owner</label>
-            <select name="petOwner" id="petOwner" required >
-                <?php
-                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-                if ( mysqli_connect_errno() ){
-                    die( mysqli_connect_error() );
-                }
-                $sql = "SELECT * FROM PET_OWNER ORDER BY Name";
-                if ($result = mysqli_query($connection, $sql))
-                {
-                    // loop through the data
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                        echo '<option value="' . $row['Client_ID'] . '">';
-                        echo $row['Name']. ', '. $row['Client_ID'];
-                        echo "</option>";
-                    }
-                    // release the memory used by the result set
-                    mysqli_free_result($result);
-                }
-                ?>
-            </select>
+            <h2>
+                General Info
+            </h2>
             <div class="form-group">
+                <label for="petOwner" >Owner</label>
+                <select name="petOwner" id="petOwner" required >
+                    <?php
+                    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+                    if ( mysqli_connect_errno() ){
+                        die( mysqli_connect_error() );
+                    }
+                    $sql = "SELECT * FROM PET_OWNER ORDER BY Name";
+                    if ($result = mysqli_query($connection, $sql))
+                    {
+                        // loop through the data
+                        while($row = mysqli_fetch_assoc($result))
+                        {
+                            echo '<option value="' . $row['Client_ID'] . '">';
+                            echo $row['Name']. ', '. $row['Client_ID'];
+                            echo "</option>";
+                        }
+                        // release the memory used by the result set
+                        mysqli_free_result($result);
+                    }
+                    ?>
+                </select>
                 <label for="clname">Pets Name</label>
                 <input type="text" id="pname" name="pname" placeholder="Enter Pet's Name" required>
 
@@ -100,12 +103,10 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
 
                 <div>
                     <label for="date">Date Of Birth:</label>
-                    <input type="date" id="Date" name="apptDate" required>
+                    <input type="date" id="date" name="bdate" required>
                     <label for="weight" class="form-label mt-4" >Weight</label>
                     <input type="number" id="weight" name="weight"
                        placeholder="Enter Pet's weight"required>
-                </div>
-                <div>
                     <label for="cutcard">Cut card</label>
                     <input id="cutcard" name = "cutcard" type="number" placeholder="Assign Cut Card" required>
                 </div>
@@ -119,15 +120,55 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
                     <input class="form-check-input" type="checkbox" id="rab">
                     <label class="form-check-label" for="rab">Vacinated Aganst Rabbies?</label>
                 </div>
-                <label>Notes</label>
+                <label for="notes">Notes</label>
                 <input id="notes" name = "notes" type="text" placeholder="Any Notes?" required>
-                <button type="submit" class="btn btn-primary">Submit</button>
+               <h2>
+                   Cut Card
+                </h2>
+                <label for="bnotes">Bath Brush Notes</label>
+                <input id="bnotes" name = "bnotes" type="text" placeholder="Bath notes?" required>
+                <label for="tnotes">Trim Tidy Notes</label>
+                <input id="tnotes" name = "tnotes" type="text" placeholder="Trim Notes?" required>
+                <label for="gnotes">Full Groom Notes</label>
+                <input id="gnotes" name = "gnotes" type="text" placeholder="Groom Notes?" required>
+                <label for="nnotes">Nail Clip Notes</label>
+                <input id="nnotes" name = "nnotes" type="text" placeholder="Groom Notes?" required>
+                <label for="ladate">Last Appointment Date:</label>
+                <input type="date" id="ladate" name="ladate" required>
+                <label for="serv" >Last Service</label>
+                <select name="serv" id="serv" required>
+                    <?php 
+                    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+                    if ( mysqli_connect_errno() )
+                    {
+                        die( mysqli_connect_error() );
+                    }
+                    $sql = "SELECT * FROM SERVICE ORDER BY Service, Difficulty";
+                    if ($result = mysqli_query($connection, $sql))  
+                    {
+                        // loop through the data 
+                        while($row = mysqli_fetch_assoc($result)) 
+                        {
+                            echo '<option value="' . $row['Service_ID'] . '">';
+                            echo $row['Service']. ', '. $row['Service_ID'];
+                            echo ' Difficulty' . ', '. $row['Difficulty'];;
+                            echo "</option>";
+                        }
+                        // release the memory used by the result set
+                        mysqli_free_result($result);
+                    }
+
+                    ?>
+                </select>
             </div>
-
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
-
-
+<!--
+        INSERT INTO CUT_CARD (Bath_Brush_Notes, Trim_Tidy_Notes, Full_Groom_Notes, Nail_Clip_Notes, Previous_Appointment_Date, Previous_Service) 
+        VALUES ('Hypo Allergenic Shampoo', 'Use #4 Blade - C Comb', 'Use #3 Blade - B Comb', 'Hates nails being clipped', DATE '2023-01-22', 4013);             
+        INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Cut_Card, Microchipped, Rabies_Vaccine, Note) 
+        VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Friendly old orange cat');
+-->
 
         <?php
         $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
@@ -142,6 +183,15 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
             {
                 die( mysqli_connect_error() );
             }
+            //TODO submit SQL statemnt for cut_card
+            //submit SQL statement for pet and tie to newly created cutcard
+
+
+
+
+
+
+
 
            // $sql = "INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Cut_Card, Microchipped, Rabies_Vaccine, Note)
           //          VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Friendly old orange cat');";
@@ -152,7 +202,7 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
             //}
 
             echo '<div class="alert alert-dismissible alert-success">
-  <strong>Client Added!!</strong><a href="newPet.php">would you like to attach a pet</a>
+  <strong>Pet Added!!</strong><a href="index.php">View Upcoming Appointments</a>
 </div>
 ';
         }
