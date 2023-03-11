@@ -107,23 +107,27 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
                     <label for="weight" class="form-label mt-4" >Weight</label>
                     <input type="number" id="weight" name="weight"
                        placeholder="Enter Pet's weight"required>
-                    <label for="cutcard">Cut card</label>
-                    <input id="cutcard" name = "cutcard" type="number" placeholder="Assign Cut Card" required>
+                    <label for="notes">Notes</label>
+                    <input id="notes" name = "notes" type="text" placeholder="Any Notes?" required>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="chip">
+                    <input class="form-check-input" type="checkbox" id="chip" name ="chip">
                     <label class="form-check-label" for="chip">
                         Microchiped?
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="rab">
+                    <input class="form-check-input" type="checkbox" id="rab" name="rab">
                     <label class="form-check-label" for="rab">Vacinated Aganst Rabbies?</label>
                 </div>
-                <label for="notes">Notes</label>
-                <input id="notes" name = "notes" type="text" placeholder="Any Notes?" required>
-               <h2>
-                   Cut Card
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+                </form>
+<!--
+            <form>
+                <div>
+                <h2>
+                    Cut Card
                 </h2>
                 <label for="bnotes">Bath Brush Notes</label>
                 <input id="bnotes" name = "bnotes" type="text" placeholder="Bath notes?" required>
@@ -160,9 +164,9 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
 
                     ?>
                 </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                </div>
+            </form>
+-->
 <!--
         INSERT INTO CUT_CARD (Bath_Brush_Notes, Trim_Tidy_Notes, Full_Groom_Notes, Nail_Clip_Notes, Previous_Appointment_Date, Previous_Service) 
         VALUES ('Hypo Allergenic Shampoo', 'Use #4 Blade - C Comb', 'Use #3 Blade - B Comb', 'Hates nails being clipped', DATE '2023-01-22', 4013);             
@@ -183,23 +187,17 @@ VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Frien
             {
                 die( mysqli_connect_error() );
             }
+            $microchipped = ($_POST["chip"] == "on") ? "Yes" : "No";
+            $rabies_vaccine = ($_POST["rab"] == "on") ? "Yes" : "No";
             //TODO submit SQL statemnt for cut_card
             //submit SQL statement for pet and tie to newly created cutcard
-
-
-
-
-
-
-
-
-           // $sql = "INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Cut_Card, Microchipped, Rabies_Vaccine, Note)
-          //          VALUES ('Tarzan', 1001, 'Tabby', DATE '2011-1-11', 6, 2005, 'Yes', 'Yes', 'Friendly old orange cat');";
-           //echo $sql;
-            //$result = mysqli_query($connection, $sql);
-            //if (!$result) {
-              //  die('Error: ' . mysqli_error($connection));
-            //}
+            $sql = "INSERT INTO PET(Name, Owner_id, Breed, Birthday, Weight, Microchipped, Rabies_Vaccine, Note)
+        VALUES ('{$_POST['pname']}',{$_POST['petOwner']},'{$_POST['breed']}','{$_POST['bdate']}','{$_POST['weight']}','{$microchipped}','{$rabies_vaccine}','{$_POST['notes']}');";
+           echo $sql;
+            $result = mysqli_query($connection, $sql);
+            if (!$result) {
+               die('Error: ' . mysqli_error($connection));
+            }
 
             echo '<div class="alert alert-dismissible alert-success">
   <strong>Pet Added!!</strong><a href="index.php">View Upcoming Appointments</a>
